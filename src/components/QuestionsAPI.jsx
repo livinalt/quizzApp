@@ -40,6 +40,20 @@ const QuestionsAPI = () => {
     setSelectedOption(option);
   };
 
+  const handleRestartQuiz = () => {
+    setIndex(0);
+    setIsQuizFinished(false);
+    setScore(0);
+
+      if (loading) {
+        return <div>Loading...</div>;
+      }
+
+      if (error) {
+        return <div>Error: {error}</div>;
+      }
+  }
+
   const handleNextButton = () => {
     const correctAnswerKey = Object.keys(questions[index].correct_answers).find(
       (key) => questions[index].correct_answers[key] === "true"
@@ -76,17 +90,24 @@ const QuestionsAPI = () => {
     return (
       <div className="flex justify-center items-center h-screen">
         <div className="w-full max-w-lg p-8 border border-gray-300 rounded-md shadow-md text-center">
-          <h2 className="text-2xl font-semibold mb-4">Quiz Completed!</h2>
+          <h2 className="text-2xl font-semibold mb-4">Quiz Over!!!</h2>
           <p>
             Your Score: {score} out of {questions.length}
           </p>
+
+          <button
+            onClick={handleRestartQuiz}
+            className="mt-6 px-9 py-3 bg-blue-700 text-white hover:bg-red-500"
+          >
+            Restart Quiz
+          </button>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-90vh mx-[384px]">
       <div className="w-full max-w-lg p-8 border border-gray-300 rounded-md shadow-md">
         <div className="mb-6 flex flex-col text-center">
           <p>
