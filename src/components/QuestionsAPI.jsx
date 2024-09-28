@@ -132,7 +132,7 @@ const QuestionsAPI = () => {
                     : "border-gray-300"
                 }`}
               >
-                <div className="font-semibold">{key.toUpperCase()}</div>
+                <div className="font-semibold">{key}</div>
                 <div>{value}</div>
               </div>
             );
